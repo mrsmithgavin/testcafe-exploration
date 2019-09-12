@@ -1,4 +1,4 @@
-import { Selector } from 'testcafe';
+import { Selector, t } from 'testcafe';
 
 const developerNameInput = Selector('#developer-name');
 
@@ -12,6 +12,7 @@ test('Perform search and validate expected result found', async t => {
   // Verify Route
 
   // Check H1 and accompanying
+    // H1 in h1 tag and accompanying in P
 
   
   // Configure test to handle dialogs
@@ -30,9 +31,13 @@ test('Perform search and validate expected result found', async t => {
       .expect(history[0].type).eql('confirm')
       .expect(history[0].text).eql('Reset information before proceeding?')
       .expect(Selector('#developer-name').value).notEql(developerNameText)
-    })
+
+  // fieldset 2, I wonder if I can use some filtering
+    //  - Which features are important to you:
 
   // Interact with checkboxes
+  await t
+    .click(Selector('#remote-testing'))
 
   // Interact with radio buttons
 
@@ -47,3 +52,5 @@ test('Perform search and validate expected result found', async t => {
   // After submit, app will display confirmation page
   // - check route
   // - perform validations
+
+})
