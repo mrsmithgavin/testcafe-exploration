@@ -1,7 +1,7 @@
 {
-  "name": "google-automation",
+  "name": "testcafe-exploration",
   "version": "0.0.1",
-  "description": "TestCafe exploration using Google as the application under test",
+  "description": "TestCafe exploration using https://devexpress.github.io/testcafe/example/ as the application under test",
   "scripts": {
     "test": "testcafe chrome tests/"
   },
