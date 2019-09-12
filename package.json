@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "TestCafe exploration using Google as the application under test",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "testcafe chrome tests/"
   },
   "author": "Gavin Smith",
   "license": "ISC",
