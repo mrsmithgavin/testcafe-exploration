@@ -1,0 +1,7 @@
+import { ClientFunction } from 'testcafe';
+
+export const getPageUrl = ClientFunction(() => window.location.href);
+
+export async function getTextFromElement(element: Selector) {
+  return element.textContent
+};
