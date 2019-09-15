@@ -1,24 +1,25 @@
-import { Selector, t } from 'testcafe';
+import { Selector, t, ClientFunction } from 'testcafe';
 
 const developerNameInput = Selector('#developer-name');
 
 async function sleep(ms = 2000) {
-	return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-fixture `TestCafe Example Page`   
-  .page `https://devexpress.github.io/testcafe/example/`;
+fixture`TestCafe Example Page`
+  .page`https://devexpress.github.io/testcafe/example/`;
 
 test('Perform search and validate expected result found', async t => {
 
   const developerNameText = 'TestCafe Woot';
+  const getPageUrl = ClientFunction(() => window.location.href);
 
   // Verify Route
 
   // Check H1 and accompanying
-    // H1 in h1 tag and accompanying in P
+  // H1 in h1 tag and accompanying in P
 
-  
+
   // Configure test to handle dialogs
   await t
     .setNativeDialogHandler(() => true)
@@ -27,17 +28,17 @@ test('Perform search and validate expected result found', async t => {
   await t
     .typeText(Selector('#developer-name'), developerNameText)
     .expect(developerNameInput.value).eql(developerNameText)
-        .click(Selector('#populate'));
-   
+    .click(Selector('#populate'));
+
   // Deal with alert and perform some expectations on the contents
   const history = await t.getNativeDialogHistory();
   await t
-      .expect(history[0].type).eql('confirm')
-      .expect(history[0].text).eql('Reset information before proceeding?')
-      .expect(Selector('#developer-name').value).notEql(developerNameText)
+    .expect(history[0].type).eql('confirm')
+    .expect(history[0].text).eql('Reset information before proceeding?')
+    .expect(Selector('#developer-name').value).notEql(developerNameText)
 
   // "column col-1": fieldset 2, I wonder if I can use some filtering
-    //  - Which features are important to you:
+  //  - Which features are important to you:
 
   // Interact with checkboxes
   await t.click(Selector('#remote-testing'))
@@ -56,7 +57,7 @@ test('Perform search and validate expected result found', async t => {
   await t
     .click(preferredInterfaceDropDown)
     .click(interfaceOption.withText(interfaceOptionToSelect))
-    .expect(preferredInterfaceDropDown.value).eql(interfaceOptionToSelect)
+    .expect(preferredInterfaceDropDown.value).eql(interfaceOptionToSelect);
 
 
   // 'form-bottom':   How would you rate TestCafe on a scale from 1 to 10
@@ -67,17 +68,25 @@ test('Perform search and validate expected result found', async t => {
   const slider = await Selector('#slider');
   const clientWidth = await slider.clientWidth;
 
-  const numberRange = {min: 1, max: 10}
+  const numberRange = { min: 1, max: 10 }
   const pseudoRandomNumber = Math.floor(Math.random() * numberRange.max) + numberRange.min;
   const slideTo = Math.floor(clientWidth / numberRange.max);
-  await t.drag('.ui-slider-handle', slideTo, 0, { offsetX: 10, offsetY: 10 })
+  await t.drag('.ui-slider-handle', slideTo, 0, { offsetX: 10, offsetY: 10 });
 
   // Interact with textarea
+  await t.typeText(Selector('#comments'), "This is some text to input.");
 
   // Interact with button
+  await t.click(Selector('#submit-button'))
 
   // After submit, app will display confirmation page
   // - check route
-  // - perform validations
-
+  await t.expect(getPageUrl()).contains('https://devexpress.github.io/testcafe/example/thank-you');
+  // await Selector('#article-header').withText('Thank you, ' + developerNameText + '!');
+  const articleHeader = Selector('#article-header');
+  const articleHeaderElement = await articleHeader();
+  await t.expect(await articleHeaderElement.textContent).eql('Thank you, Peter Parker!');
+  await t.expect(await Selector('p').textContent)
+    .eql('To learn more about TestCafe, please visit:\n        devexpress.github.io/testcafe');
+  await t.expect(await Selector('a').getAttribute('href')).contains('/testcafe');
 })
