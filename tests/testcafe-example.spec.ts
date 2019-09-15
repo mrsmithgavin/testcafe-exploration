@@ -12,6 +12,7 @@ fixture`TestCafe Example Page`
 test('Perform search and validate expected result found', async t => {
 
   const developerNameText = 'TestCafe Woot';
+  const defaultDeveloperNameText = 'Peter Parker'
   const getPageUrl = ClientFunction(() => window.location.href);
 
   // Verify Route
@@ -32,7 +33,8 @@ test('Perform search and validate expected result found', async t => {
   await t
     .typeText(Selector('#developer-name'), developerNameText)
     .expect(developerNameInput.value).eql(developerNameText)
-    .click(Selector('#populate'));
+    .click(Selector('#populate'))
+    .expect(developerNameInput.value).eql(defaultDeveloperNameText)
 
   // Deal with alert and perform some expectations on the contents
   const history = await t.getNativeDialogHistory();
@@ -89,7 +91,7 @@ test('Perform search and validate expected result found', async t => {
   // await Selector('#article-header').withText('Thank you, ' + developerNameText + '!');
   const articleHeader = Selector('#article-header');
   const articleHeaderElement = await articleHeader();
-  await t.expect(await articleHeaderElement.textContent).eql('Thank you, Peter Parker!');
+  await t.expect(await articleHeaderElement.textContent).eql('Thank you, ' + defaultDeveloperNameText + '!');
   await t.expect(await Selector('p').textContent)
     .eql('To learn more about TestCafe, please visit:\n        devexpress.github.io/testcafe');
   await t.expect(await Selector('a').getAttribute('href')).contains('/testcafe');
