@@ -15,10 +15,14 @@ test('Perform search and validate expected result found', async t => {
   const getPageUrl = ClientFunction(() => window.location.href);
 
   // Verify Route
+  await t.expect(getPageUrl()).eql('https://devexpress.github.io/testcafe/example/');
 
   // Check H1 and accompanying
   // H1 in h1 tag and accompanying in P
-
+  await t
+    .expect(await Selector('h1').textContent).eql('Example')
+    .expect(await Selector('p').textContent)
+    .eql('This webpage is used as a sample in TestCafe tutorials.');
 
   // Configure test to handle dialogs
   await t
@@ -81,7 +85,7 @@ test('Perform search and validate expected result found', async t => {
 
   // After submit, app will display confirmation page
   // - check route
-  await t.expect(getPageUrl()).contains('https://devexpress.github.io/testcafe/example/thank-you');
+  await t.expect(getPageUrl()).eql('https://devexpress.github.io/testcafe/example/thank-you.html');
   // await Selector('#article-header').withText('Thank you, ' + developerNameText + '!');
   const articleHeader = Selector('#article-header');
   const articleHeaderElement = await articleHeader();
