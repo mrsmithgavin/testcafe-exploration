@@ -11,13 +11,13 @@
 
 ## TODO:
 - Move initial test to use new page framework
-- Think about setting up in CI
+- Issues running on circleci. something is wrong with the test reporter or passing -r xunit:/tmp/test-results/res.xml
 - Think about changing to classes.
 - Write up a doc explaining my choices. What I discovered with my approach.
 
 ## DONE:
 - Add Scripts for different builds. Slow feedback and fast feedback
-
+- Think about setting up in CI. Setup
 
 ## Examples where a class would have been better
 
