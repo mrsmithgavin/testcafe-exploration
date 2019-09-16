@@ -1,13 +1,5 @@
-import { Selector, t, ClientFunction } from 'testcafe';
+import { t } from 'testcafe';
 import { ExamplePage } from '../../../utils/page-objects/example-page-selectors';
-import { getFieldSetParentAndValidate } from '../../../utils/page-objects/common';
-import {
-  getPageUrl,
-  getTextFromElement,
-  getOptionsFromDropDown
-} from '../../../utils/page-objects/common';
-
-// import { ExamplePageSelectors } from '../../../utils/page-objects/example-page-selectors';
 
 fixture`Example Page - UI Smoke tests`
   .page(ExamplePage.url);
