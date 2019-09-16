@@ -12,7 +12,7 @@
 ## TODO:
 - Move initial test to use new page framework
 - Think about setting up in CI
-- THink about changing to classes.
+- Think about changing to classes.
 - Write up a doc explaining my choices. What I discovered with my approach.
 
 ## DONE:
@@ -21,26 +21,27 @@
 
 ## Examples where a class would have been better
 
-1. Being able to reference a just define selector in subsequent properties inside object
-    construction. Like the below. I want to use the selector and parse it to getText.
+1. Being able to reference a just defined selector in subsequent properties of an object.
+    Like the below. I wanted to use the selector and parse it to getText.
 
     ```ts
     export const h1: SelectorType = {
         selector: Selector('h1'),
         text: 'Example',
-        // getText: (selector) => new Promise(resolve => {resolve(selector.textContent)})
-        // getText: (selector) => {selector.textContent}
+        getTextTry1: (selector) => new Promise(resolve => {resolve(selector.textContent)}),
+        getTextTry2: (selector) => {selector.textContent}
     };
     ```
 
     I parsed the selector from outside into the function but it was very verbose as
     it needed to have the selector twice. See below.
-
+    ```ts
     await t.expect(Page.h1.selector.getText(Page.h1.selector)).eql('some value');
+    ```
 
-    I settled on another approach which was just having a common method to get textContent
-    and passing through the selector on that. It changes the flow of the test a little but
-    I felt it was nicer than repeating selectors on the same line of code. See below:
+    I settled on another approach which was defining a common method to get textContent
+    by passing through the selector. It changes the flow of the test a little,
+    but I felt it was much nicer than repeating selectors in the same line of code. See below:
 
     ```ts
     export async function getTextFromElement(element: Selector) {
@@ -58,17 +59,17 @@
 
     Similar to using instanceof. This would have been easy if I utilized classes for my page objects.
 
-3. Being able to construct or pass through a developer name in the ThankYouPage object. Currently only the text that is rendered when hitting the route directly is part of object. i.e.
+3. Being able to construct or pass through a developer name in the ThankYouPage object.           Something like:
 
     ```ts
     export const h1 = {
         selector: Selector('#article-header'),
-        defaultText: 'Thank you!'
+        defaultText: 'Thank you!',
+        thankYouWithName: 'Thank you, ' + developerName ,'!'
     };
-    ```
-It would have be nice to somehow define ThanYouPage.h1.thankYou(developerName).
-i.e. do something like:
-    ```ts'Thank you, ' + defaultDeveloperNameText + '!'
+
+    ThanYouPage.h1.thankYouWithName(developerName)
+```
 
 I ended up creating a separate function to help out:
 
