@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "TestCafe exploration using https://devexpress.github.io/testcafe/example/ as the application under test",
   "scripts": {
-    "test": "testcafe chrome tests/"
+    "test": "testcafe chrome tests/",
+    "fast-tests": "testcafe chrome tests/fast-feedback/",
+    "slow-tests": "testcafe chrome tests/slow-feedback/"
   },
   "author": "Gavin Smith",
   "license": "ISC",

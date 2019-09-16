@@ -5,11 +5,15 @@
 - install dependencies. $npm i
 
 ## Run the tests:
-- run tests. $npm run test
-
+- run all tests. $npm run test
+- run tests for fast feedback. $npm run fast-tests
+- run tests for slower feedback. $npm run slow-tests
 
 ## TODO:
-- create a test that loads the Testcafe Example page and then interacts with all the elements
-- Perform some form of expectation on the confirmation page
-- extract selectors out into page-objects
-- refactor any duplicate code
+- Move initial test to use new page framework
+- Think about setting up in CI
+- THink about changing to classes.
+- Write up a doc explaining my choices. What I discovered with my approach.
+
+## DONE:
+- Add Scripts for different builds. Slow feedback and fast feedback
