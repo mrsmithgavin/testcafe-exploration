@@ -142,32 +142,33 @@ export namespace ExamplePage {
     await t
       .expect(await ExamplePage.remoteTesting.checkbox.exists).eql(true)
       .expect(await ExamplePage.remoteTesting.checkbox.parent(0).textContent)
-      .eql(ExamplePage.remoteTesting.labelText);
+        .eql(ExamplePage.remoteTesting.labelText);
 
     // Validate checkbox exists and label is correct for reuse
     await t
       .expect(await ExamplePage.reuse.checkbox.exists).eql(true)
       .expect(await ExamplePage.reuse.checkbox.parent(0).textContent)
-      .eql(ExamplePage.reuse.labelText);
+        .eql(ExamplePage.reuse.labelText);
 
     // Validate checkbox exists and label is correct for testingType
     await t
       .expect(await ExamplePage.testingType.checkbox.exists).eql(true)
       .expect(await ExamplePage.testingType.checkbox.parent(0).textContent)
-      .eql(ExamplePage.testingType.labelText);
+        .eql(ExamplePage.testingType.labelText);
 
     // Validate checkbox exists and label is correct for ci
     await t
       .expect(await ExamplePage.ci.checkbox.exists).eql(true)
       .expect(await ExamplePage.ci.checkbox.parent(0).textContent)
-      .eql(ExamplePage.ci.labelText);
+        .eql(ExamplePage.ci.labelText);
 
     // Validate checkbox exists and label is correct for trafficAnalysis
     await t
       .expect(await ExamplePage.trafficAnalysis.checkbox.exists).eql(true)
       .expect(await ExamplePage.trafficAnalysis.checkbox.parent(0).textContent)
-      .eql(ExamplePage.trafficAnalysis.labelText);
-    // Validate fieldSet for Operating System is displayed
+        .eql(ExamplePage.trafficAnalysis.labelText);
+
+      // Validate fieldSet for Operating System is displayed
     await t
       .expect(await ExamplePage.osFieldSet.legend
         .withText(ExamplePage.osFieldSet.legendText).exists).eql(true);
@@ -176,18 +177,19 @@ export namespace ExamplePage {
     await t
       .expect(await ExamplePage.windows.radioButton.exists).eql(true)
       .expect(await ExamplePage.windows.radioButton.parent(0).textContent)
-      .eql(ExamplePage.windows.labelText);
+        .eql(ExamplePage.windows.labelText);
+
     // Validate radio button exists, label for and label is correct for MacOS
     await t
       .expect(await ExamplePage.macOS.radioButton.exists).eql(true)
       .expect(await ExamplePage.macOS.radioButton.parent(0).textContent)
-      .eql(ExamplePage.macOS.labelText);
+        .eql(ExamplePage.macOS.labelText);
 
     // Validate radio button exists, label for and label is correct for Linux
     await t
       .expect(await ExamplePage.linux.radioButton.exists).eql(true)
       .expect(await ExamplePage.linux.radioButton.parent(0).textContent)
-      .eql(ExamplePage.linux.labelText);
+        .eql(ExamplePage.linux.labelText);
 
     // Validate fieldSet for Interface
     await t
@@ -205,7 +207,7 @@ export namespace ExamplePage {
     await t
       .expect(await ExamplePage.triedTestCafe.checkbox.exists).eql(true)
       .expect(await ExamplePage.triedTestCafe.checkbox.parent(0).textContent)
-      .eql(ExamplePage.triedTestCafe.labelText);
+        .eql(ExamplePage.triedTestCafe.labelText);
 
     // Validate fieldSet for Slider
     await t
