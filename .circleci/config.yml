@@ -21,6 +21,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # - run: npm test
-      - run: npm run another-test
+      - run: npm run ci-test
       - store_test_results:
           path: /tmp/test-results

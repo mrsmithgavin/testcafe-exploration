@@ -5,9 +5,13 @@
 - install dependencies. $npm i
 
 ## Run the tests:
+- For the CI run, ci-test is defined in the circleci config. On the command line $npm run ci-test
 - run all tests. $npm run test
 - run tests for fast feedback. $npm run fast-tests
 - run tests for slower feedback. $npm run slow-tests
+
+The following script has issue when running on CI. I believe it's due to the reporter
+- "ci-test": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml"
 
 ## TODO:
 - Move initial test to use new page framework
@@ -16,8 +20,12 @@
 - Write up a doc explaining my choices. What I discovered with my approach.
 
 ## DONE:
-- Add Scripts for different builds. Slow feedback and fast feedback
-- Think about setting up in CI. Setup
+- initial learning of TestCafe
+- an e2e test that interacts with the first of each type of page element on this page https://devexpress.github.io/testcafe/example/
+- I wrote some smoke tests. Tests that would provide fast feedback. I would have these tests run as the first part of a CI pipeline, after the app builds. The tests I wrote perform UI validations to make sure all expected fields are present. Other tests that I would write here could check things like "checking app heat beats, small important user journeys". The purpose is get very fast feedback before executing the rest of the test suite.
+- split the tests up into a directory structure that re-enforces the slow and fast feedback paradigm.
+- Added Scripts for different builds. Slow feedback and fast feedback
+- Set CI using http://CircleCi
 
 ## Examples where a class would have been better
 
@@ -86,3 +94,5 @@ I ended up creating a separate function to help out:
     await t.expect(await h1.selector.textContent).eql(thankYouToCheck);
   }
 ```
+
+
