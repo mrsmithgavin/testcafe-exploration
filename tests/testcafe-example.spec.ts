@@ -95,4 +95,4 @@ test('Perform search and validate expected result found', async t => {
   await t.expect(await Selector('p').textContent)
     .eql('To learn more about TestCafe, please visit:\n        devexpress.github.io/testcafe');
   await t.expect(await Selector('a').getAttribute('href')).contains('/testcafe');
-})
+});
