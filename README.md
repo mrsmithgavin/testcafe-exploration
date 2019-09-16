@@ -1,6 +1,6 @@
 # testcafe-exploration
 
-## Installtion instructions
+## Installation instructions
 - clone repository
 - install dependencies. $npm i
 
@@ -17,3 +17,71 @@
 
 ## DONE:
 - Add Scripts for different builds. Slow feedback and fast feedback
+
+
+## Examples where a class would have been better
+
+1. Being able to reference a just define selector in subsequent properties inside object
+    construction. Like the below. I want to use the selector and parse it to getText.
+
+    ```ts
+    export const h1: SelectorType = {
+        selector: Selector('h1'),
+        text: 'Example',
+        // getText: (selector) => new Promise(resolve => {resolve(selector.textContent)})
+        // getText: (selector) => {selector.textContent}
+    };
+    ```
+
+    I parsed the selector from outside into the function but it was very verbose as
+    it needed to have the selector twice. See below.
+
+    await t.expect(Page.h1.selector.getText(Page.h1.selector)).eql('some value');
+
+    I settled on another approach which was just having a common method to get textContent
+    and passing through the selector on that. It changes the flow of the test a little but
+    I felt it was nicer than repeating selectors on the same line of code. See below:
+
+    ```ts
+    export async function getTextFromElement(element: Selector) {
+    return element.textContent
+    };
+
+    await t
+    .expect(await getTextFromElement(Page.headingText.selector))
+        .eql(Page.headingText.text)
+    ```
+
+2. I wanted to perform a filter or reduce on a namespace object that would return everything
+    of a specific type. Like all parameters that are of type Selector. This would have allowed
+    me to do a check just parsing this to a function. Instead of hard coding 'numberOfSelectors: 3' in the object.
+
+    Similar to using instanceof. This would have been easy if I utilized classes for my page objects.
+
+3. Being able to construct or pass through a developer name in the ThankYouPage object. Currently only the text that is rendered when hitting the route directly is part of object. i.e.
+
+    ```ts
+    export const h1 = {
+        selector: Selector('#article-header'),
+        defaultText: 'Thank you!'
+    };
+    ```
+It would have be nice to somehow define ThanYouPage.h1.thankYou(developerName).
+i.e. do something like:
+    ```ts'Thank you, ' + defaultDeveloperNameText + '!'
+
+I ended up creating a separate function to help out:
+
+```ts
+  export const h1 = {
+    selector: Selector('#article-header'),
+    defaultText: 'Thank you!',
+    thankYouTextPart1: 'Thank you, ',
+    thankYouTextPart2: '!'
+  };
+
+  export async function validateThankYou(t, name?: string) {
+    const thankYouToCheck = name ? h1.thankYouTextPart1 + name + h1.thankYouTextPart2 : h1.defaultText 
+    await t.expect(await h1.selector.textContent).eql(thankYouToCheck);
+  }
+```
