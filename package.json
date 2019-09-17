@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "TestCafe exploration using https://devexpress.github.io/testcafe/example/ as the application under test",
   "scripts": {
-    "test": "testcafe chrome tests/",
-    "fast-tests": "testcafe chrome tests/fast-feedback/",
-    "slow-tests": "testcafe chrome tests/slow-feedback/",
+    "test": "testcafe chrome,firefox tests/",
+    "fast-tests": "testcafe chrome,firefox tests/fast-feedback/",
+    "slow-tests": "testcafe chrome,firefox tests/slow-feedback/",
     "ci-test-issues": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml",
-    "ci-test": "testcafe chrome:headless tests/",
+    "ci-test": "testcafe chrome:headless,firefox:headless tests/",
     "browser-list": "testcafe --list-browsers"
   },
   "author": "Gavin Smith",
