@@ -12,7 +12,6 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-
       - run: npm install
 
       - save_cache:
@@ -20,6 +19,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: npm browser-list
       # - run: npm test
       - run: npm run ci-test
       - store_test_results:

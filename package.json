@@ -6,8 +6,9 @@
     "test": "testcafe chrome tests/",
     "fast-tests": "testcafe chrome tests/fast-feedback/",
     "slow-tests": "testcafe chrome tests/slow-feedback/",
-    "ci-test": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml",
-    "another-test": "testcafe chrome:headless tests/"
+    "ci-test-issues": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml",
+    "ci-test": "testcafe chrome:headless tests/",
+    "browser-list": "testcafe --list-browsers"
   },
   "author": "Gavin Smith",
   "license": "ISC",
