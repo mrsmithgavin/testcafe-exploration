@@ -19,7 +19,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm browser-list
+      - run: npm run browser-list
       # - run: npm test
       - run: npm run ci-test
       - store_test_results:
