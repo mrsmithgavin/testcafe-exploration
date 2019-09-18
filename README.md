@@ -10,7 +10,7 @@
 - run all tests. $npm run test
 - run tests for fast feedback. $npm run fast-tests
 - run tests for slower feedback. $npm run slow-tests
-- "ci-test": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml"
+- ci test run uses "ci-test": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml"
 
 ## TODO:
 - Think about changing to classes.
