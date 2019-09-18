@@ -2,6 +2,7 @@
 
 ## Installation instructions
 - clone repository
+- change directory into project root. 
 - install dependencies. $npm install
 
 ## Run the tests:
