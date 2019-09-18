@@ -34,3 +34,7 @@ export async function getFieldSetParentAndValidate(t: TestController, fieldSetSe
     .expect(await fieldSetChildren.count).eql(fieldSetSelector.numberOfSelectors)
 
 }
+
+export function getPseudoRandomNumber(min, max) {
+  return Math.floor(Math.random() * max) + min;
+}

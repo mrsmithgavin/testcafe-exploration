@@ -9,7 +9,8 @@ fixture`Example Page - UI Smoke tests`
   .page(ThankYouPage.url);
 
 test('Validate all expected fields are displayed', async t => {
-  await t.expect(getPageUrl()).eql('https://devexpress.github.io/testcafe/example/thank-you.html');
+  // Page Elements are defined in the order they displayed on the page
+  await t.expect(getPageUrl()).eql(ThankYouPage.url);
   // Validate that the H1 is present and it's text is expected.
   await ThankYouPage.validateThankYou(t)
 

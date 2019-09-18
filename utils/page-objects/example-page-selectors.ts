@@ -6,8 +6,7 @@ import {
 } from './common';
 
 export namespace ExamplePage {
-  // Selectors are defined in the order they displayed on the page
-
+  // Page Elements are defined in the order they displayed on the page
   // Header
   export const h1: SelectorType = {
     selector: Selector('h1'),
@@ -90,6 +89,7 @@ export namespace ExamplePage {
     legend: Selector('legend'),
     legendText: 'Which TestCafe interface do you use:',
     dropDown: Selector('#preferred-interface'),
+    option: 'option',
     options: ['Command Line', 'JavaScript API', 'Both']
   }
 
@@ -121,10 +121,11 @@ export namespace ExamplePage {
     button: Selector('#submit-button'),
     buttonText: 'Submit'
   }
+
   export const url = 'https://devexpress.github.io/testcafe/example/';
 
   export async function validateAllExpectedFieldsAreDisplayedAndHaveExpectedValues(t: TestController) {
-    await t.expect(getPageUrl()).eql('https://devexpress.github.io/testcafe/example/');
+    await t.expect(getPageUrl()).eql(ExamplePage.url);
     // Validate that the H1 and Heading text is displayed
     const tmp = await ExamplePage.h1.selector;
     await t
