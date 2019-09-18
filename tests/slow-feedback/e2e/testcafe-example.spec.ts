@@ -58,7 +58,6 @@ test('Perform search and validate expected result found', async t => {
 
   // Interact with slider
   const slideTo = getPseudoRandomNumber(0, await ExamplePage.sliderFieldSet.slider.clientWidth);
-  console.log('slideTo', slideTo)
   await t.drag('.ui-slider-handle', slideTo, 0, { offsetX: 10, offsetY: 10 });
 
   // Interact with textarea
@@ -70,8 +69,8 @@ test('Perform search and validate expected result found', async t => {
   // After submit, app will display confirmation page
   // - check route
   await t.expect(getPageUrl()).eql(ThankYouPage.url);
+
   // Validate expected outcomes
-  const articleHeaderElement = await ThankYouPage.h1.selector
   ThankYouPage.validateThankYou(t, defaultDeveloperNameText);
   await t.expect(await ThankYouPage.headingText.selector.textContent)
     .eql(ThankYouPage.headingText.text);
