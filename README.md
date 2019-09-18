@@ -2,7 +2,7 @@
 
 ## Installation instructions
 - clone repository
-- install dependencies. $npm i
+- install dependencies. $npm install
 
 ## Run the tests:
 - For the CI run, ci-test is defined in the circleci config. On the command line $npm run ci-test
@@ -14,8 +14,6 @@ The following script has issue when running on CI. I believe it's due to the rep
 - "ci-test": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml"
 
 ## TODO:
-- Move initial test to use new page framework
-- Issues running on circleci. something is wrong with the test reporter or passing -r xunit:/tmp/test-results/res.xml
 - Think about changing to classes.
 - Write up a doc explaining my choices. What I discovered with my approach.
 
@@ -26,8 +24,10 @@ The following script has issue when running on CI. I believe it's due to the rep
 - split the tests up into a directory structure that re-enforces the slow and fast feedback paradigm.
 - Added Scripts for different builds. Slow feedback and fast feedback
 - Set CI using http://CircleCi
+- Move initial test to use new page framework
+- Issues running on circleci. something is wrong with the test reporter or passing -r xunit:/tmp/test-results/res.xml
 
-## Examples where a class would have been better
+## Design: Examples where a class would have been better
 
 1. Being able to reference a just defined selector in subsequent properties of an object.
     Like the below. I wanted to use the selector and parse it to getText.
