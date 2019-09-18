@@ -10,8 +10,6 @@
 - run all tests. $npm run test
 - run tests for fast feedback. $npm run fast-tests
 - run tests for slower feedback. $npm run slow-tests
-
-The following script has issue when running on CI. I believe it's due to the reporter
 - "ci-test": "testcafe chrome:headless tests/**/* -r xunit:/tmp/test-results/res.xml"
 
 ## TODO:
