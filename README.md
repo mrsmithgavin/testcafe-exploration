@@ -68,7 +68,7 @@
 
 3. Being able to construct or pass through a developer name in the ThankYouPage object.           Something like:
 
-    ```ts
+```ts
     export const h1 = {
         selector: Selector('#article-header'),
         defaultText: 'Thank you!',
